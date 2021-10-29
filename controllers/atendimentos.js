@@ -1,5 +1,7 @@
 const Atendimento = require('../models/atendimentos')
-
+/*Módulo controlador
+Responsável por definir as rotas e repassar requisições do cliente para o back-end
+*/
 module.exports = app => {
     app.get('/atendimentos', (req, res) => {
         Atendimento.lista(res)

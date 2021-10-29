@@ -1,7 +1,7 @@
 const express = require('express')
 const consign = require('consign')
 const bodyParser = require('body-parser')
- 
+// Exporta função que retorna aplicação express
 module.exports = () => {
  const app = express()
  

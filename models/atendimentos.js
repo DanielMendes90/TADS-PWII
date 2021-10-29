@@ -1,7 +1,7 @@
 const moment = require('moment')
 const conexao = require('../infraestrutura/conexao')
 
-class Atendimento {
+class Atendimento { //Classe responsável por validação dos dados e comunicação com o banco de dados
     adiciona(atendimento, res) {
         const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS')
         const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
@@ -43,7 +43,7 @@ class Atendimento {
        
     }
 
-    lista(res) {
+    lista(res) { //Método para listagem dos resultados obtidos
         const sql = 'SELECT * FROM Atendimentos'
 
         conexao.query(sql, (erro, resultados) => {
@@ -55,7 +55,7 @@ class Atendimento {
         })
     }
 
-    buscaPorId(id, res) {
+    buscaPorId(id, res) { //Método que faz a busca de um id específico no banco de dados
         const sql = `SELECT * FROM Atendimentos WHERE id=${id}`
 
         conexao.query(sql, (erro, resultados) => {
@@ -68,7 +68,7 @@ class Atendimento {
         })
     }
 
-    altera(id, valores, res) {
+    altera(id, valores, res) { //Método para alteração dos valores dos registros no banco de dados
         if(valores.data) {
             valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
         }      
@@ -83,7 +83,7 @@ class Atendimento {
         })
     }
 
-    deleta(id, res) {
+    deleta(id, res) { //Método para deletar registro do banco de dados, através do id
         const sql = 'DELETE FROM Atendimentos WHERE id=?'
 
         conexao.query(sql, id, (erro, resultados) => {
@@ -95,5 +95,5 @@ class Atendimento {
         })
     }
 }
-
+//Exportação da instância Atendimento
 module.exports = new Atendimento
